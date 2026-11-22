@@ -1,0 +1,6 @@
+-- DanusGo: 05_partition.sql  (Bab 9: partisi dan paralel)  -- peran #7
+-- Partisi range bulanan sudah dibuat di 01_schema.sql. File ini untuk:
+--   * perbandingan Range vs Hash partitioning (tabel eksperimen terpisah)
+--   * dataset 1-5 juta baris khusus eksperimen paralel
+--   * uji max_parallel_workers_per_gather = 0, 2, 4
+-- Tidak dimuat otomatis.

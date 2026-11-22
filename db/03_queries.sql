@@ -1,0 +1,3 @@
+-- DanusGo: 03_queries.sql  (Bab 2: SQL lanjut)  -- peran #3 Core SQL
+-- Isi: correlated subquery, CTE, window function, recursive CTE, dan fungsi
+-- pemesanan atomik (BR-01). Lihat PRD Bagian 6 dan 12. Tidak dimuat otomatis.

@@ -1,0 +1,86 @@
+name: danusgo
+
+services:
+  db:
+    image: postgres:16
+    container_name: danusgo-db
+    # "no" sengaja: pada demo crash (Bab 4) container yang dimatikan paksa
+    # tidak boleh hidup sendiri; nyalakan manual (make up) agar log recovery terbaca.
+    restart: "no"
+    environment:
+      POSTGRES_USER: ${DB_USER:-danusgo}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-danusgo_dev}
+      POSTGRES_DB: ${DB_NAME:-danusgo}
+      TZ: Asia/Jakarta
+      PGTZ: Asia/Jakarta
+    # Konfigurasi dikunci di sini supaya hasil EXPLAIN konsisten antar laptop (risiko di PRD Bagian 16).
+    command:
+      - postgres
+      - -c
+      - timezone=Asia/Jakarta
+      - -c
+      - shared_buffers=256MB
+      - -c
+      - effective_cache_size=1GB
+      - -c
+      - work_mem=16MB
+      - -c
+      - random_page_cost=1.1
+      - -c
+      - max_parallel_workers_per_gather=2
+      - -c
+      - track_io_timing=on
+      - -c
+      - log_checkpoints=on
+      - -c
+      - log_min_messages=info
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    shm_size: 256mb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Init hanya jalan saat volume masih kosong, berurutan menurut nama file.
+      # 03_queries, 04_indexes, 05_partition SENGAJA tidak dimuat otomatis.
+      - ./db/01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./db/02_seed_master.sql:/docker-entrypoint-initdb.d/02_seed_master.sql:ro
+      - ./db/06_dw_schema.sql:/docker-entrypoint-initdb.d/06_dw_schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Opsional: docker compose --profile tools up -d   (make tools)
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: danusgo-pgadmin
+    profiles: ["tools"]
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@danusgo.local}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # Peran #9 dan #10: aktifkan setelah Dockerfile masing-masing ada.
+  # backend:
+  #   build: ./backend
+  #   depends_on:
+  #     db: { condition: service_healthy }
+  #   environment:
+  #     DATABASE_URL: postgresql://${DB_USER:-danusgo}:${DB_PASSWORD:-danusgo_dev}@db:5432/${DB_NAME:-danusgo}
+  #     JWT_SECRET: ${JWT_SECRET:-ganti-di-env}
+  #     TZ: Asia/Jakarta
+  #   ports: ["8000:8000"]
+  #
+  # frontend:
+  #   build: ./frontend
+  #   depends_on: [backend]
+  #   ports: ["3000:3000"]
+
+volumes:
+  pgdata:
