@@ -1,0 +1,235 @@
+=== RAW EXPLAIN (ANALYZE, BUFFERS) - AFTER INDEXING ===
+
+--- Skenario 1 (Radar Sesi Harian) ---
+SQL: SELECT * FROM sesi_jualan WHERE tanggal_jualan = '2026-11-20' AND status_sesi = 'CLOSED';
+Index Scan using idx_sesi_tgl_status on sesi_jualan  (cost=0.28..13.11 rows=26 width=38) (actual time=0.009..0.013 rows=25 loops=1)
+  Index Cond: ((tanggal_jualan = '2026-11-20'::date) AND (status_sesi = 'CLOSED'::text))
+  Buffers: shared hit=3
+Planning Time: 0.060 ms
+Execution Time: 0.025 ms
+
+--- Skenario 2 (Riwayat Pesanan Pengguna) ---
+SQL: SELECT * FROM pesanan_danus WHERE id_mahasiswa = 100 ORDER BY waktu_pesan DESC LIMIT 20;
+Limit  (cost=4.08..39.83 rows=20 width=99) (actual time=0.029..0.031 rows=0 loops=1)
+  Buffers: shared hit=32
+  ->  Merge Append  (cost=4.08..52.35 rows=27 width=99) (actual time=0.029..0.030 rows=0 loops=1)
+        Sort Key: pesanan_danus.waktu_pesan DESC
+        Buffers: shared hit=32
+        ->  Index Scan using pesanan_2026_01_id_mahasiswa_waktu_pesan_idx on pesanan_2026_01 pesanan_danus_1  (cost=0.29..3.62 rows=2 width=87) (actual time=0.005..0.005 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_02_id_mahasiswa_waktu_pesan_idx on pesanan_2026_02 pesanan_danus_2  (cost=0.29..3.62 rows=2 width=86) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_03_id_mahasiswa_waktu_pesan_idx on pesanan_2026_03 pesanan_danus_3  (cost=0.29..3.62 rows=2 width=86) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_04_id_mahasiswa_waktu_pesan_idx on pesanan_2026_04 pesanan_danus_4  (cost=0.29..3.62 rows=2 width=87) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_05_id_mahasiswa_waktu_pesan_idx on pesanan_2026_05 pesanan_danus_5  (cost=0.29..3.62 rows=2 width=87) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_06_id_mahasiswa_waktu_pesan_idx on pesanan_2026_06 pesanan_danus_6  (cost=0.29..3.62 rows=2 width=87) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_07_id_mahasiswa_waktu_pesan_idx on pesanan_2026_07 pesanan_danus_7  (cost=0.29..3.62 rows=2 width=86) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_08_id_mahasiswa_waktu_pesan_idx on pesanan_2026_08 pesanan_danus_8  (cost=0.29..3.62 rows=2 width=86) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_09_id_mahasiswa_waktu_pesan_idx on pesanan_2026_09 pesanan_danus_9  (cost=0.29..3.62 rows=2 width=86) (actual time=0.001..0.002 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_10_id_mahasiswa_waktu_pesan_idx on pesanan_2026_10 pesanan_danus_10  (cost=0.29..3.62 rows=2 width=86) (actual time=0.002..0.002 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_11_id_mahasiswa_waktu_pesan_idx on pesanan_2026_11 pesanan_danus_11  (cost=0.29..3.44 rows=2 width=87) (actual time=0.003..0.003 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2026_12_id_mahasiswa_waktu_pesan_idx on pesanan_2026_12 pesanan_danus_12  (cost=0.12..2.34 rows=1 width=156) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2027_01_id_mahasiswa_waktu_pesan_idx on pesanan_2027_01 pesanan_danus_13  (cost=0.12..2.34 rows=1 width=156) (actual time=0.000..0.000 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2027_02_id_mahasiswa_waktu_pesan_idx on pesanan_2027_02 pesanan_danus_14  (cost=0.12..2.34 rows=1 width=156) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_2027_03_id_mahasiswa_waktu_pesan_idx on pesanan_2027_03 pesanan_danus_15  (cost=0.12..2.34 rows=1 width=156) (actual time=0.000..0.001 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+        ->  Index Scan using pesanan_default_id_mahasiswa_waktu_pesan_idx on pesanan_default pesanan_danus_16  (cost=0.12..2.34 rows=1 width=156) (actual time=0.001..0.001 rows=0 loops=1)
+              Index Cond: (id_mahasiswa = 100)
+              Buffers: shared hit=2
+Planning:
+  Buffers: shared hit=20
+Planning Time: 0.459 ms
+Execution Time: 0.063 ms
+
+--- Skenario 3 (Agregasi Bulanan / Pruning) ---
+SQL: SELECT SUM(dp.jumlah_item * dp.harga_satuan) AS omzet_bulan FROM detail_pesanan dp JOIN pesanan_danus p ON dp.id_pesanan = p.id_pesanan AND dp.waktu_pesan = p.waktu_pesan WHERE p.waktu_pesan >= '2026-05-01 00:00:00+07' AND p.waktu_pesan < '2026-06-01 00:00:00+07';
+Aggregate  (cost=4147.20..4147.21 rows=1 width=32) (actual time=20.687..20.692 rows=1 loops=1)
+  Buffers: shared hit=1577
+  ->  Hash Join  (cost=401.62..4147.19 rows=1 width=10) (actual time=1.324..19.014 rows=13938 loops=1)
+        Hash Cond: ((dp.id_pesanan = p.id_pesanan) AND (dp.waktu_pesan = p.waktu_pesan))
+        Buffers: shared hit=1577
+        ->  Seq Scan on detail_pesanan dp  (cost=0.00..2984.90 rows=144890 width=26) (actual time=0.004..6.036 rows=144890 loops=1)
+              Buffers: shared hit=1536
+        ->  Hash  (cost=248.94..248.94 rows=10178 width=16) (actual time=1.304..1.306 rows=10178 loops=1)
+              Buckets: 16384  Batches: 1  Memory Usage: 606kB
+              Buffers: shared hit=41
+              ->  Index Only Scan using pesanan_2026_05_pkey on pesanan_2026_05 p  (cost=0.29..248.94 rows=10178 width=16) (actual time=0.012..0.643 rows=10178 loops=1)
+                    Index Cond: ((waktu_pesan >= '2026-05-01 00:00:00+07'::timestamp with time zone) AND (waktu_pesan < '2026-06-01 00:00:00+07'::timestamp with time zone))
+                    Heap Fetches: 0
+                    Buffers: shared hit=41
+Planning:
+  Buffers: shared hit=6
+Planning Time: 0.294 ms
+Execution Time: 20.729 ms
+
+--- Skenario 4 (Join Antrean Aktif / Partial) ---
+SQL: SELECT p.id_pesanan, u.nama, s.tanggal_jualan, p.status_pesanan FROM pesanan_danus p JOIN pengguna u ON p.id_mahasiswa = u.id_mahasiswa JOIN sesi_jualan s ON p.id_sesi = s.id_sesi WHERE p.status_pesanan IN ('PENDING', 'PAID');
+Hash Join  (cost=485.67..1806.33 rows=14190 width=38) (actual time=1.759..4.691 rows=4185 loops=1)
+  Hash Cond: (p.id_sesi = s.id_sesi)
+  Buffers: shared hit=1650
+  ->  Hash Join  (cost=238.67..1522.06 rows=14190 width=38) (actual time=0.798..3.220 rows=4185 loops=1)
+        Hash Cond: (p.id_mahasiswa = u.id_mahasiswa)
+        Buffers: shared hit=1583
+        ->  Append  (cost=0.15..1246.25 rows=14190 width=24) (actual time=0.008..1.945 rows=4185 loops=1)
+              Buffers: shared hit=1457
+              ->  Index Scan using pesanan_2026_01_status_pesanan_idx on pesanan_2026_01 p_1  (cost=0.15..71.37 rows=351 width=25) (actual time=0.007..0.156 rows=351 loops=1)
+                    Buffers: shared hit=122
+              ->  Index Scan using pesanan_2026_02_status_pesanan_idx on pesanan_2026_02 p_2  (cost=0.15..76.03 rows=388 width=25) (actual time=0.005..0.158 rows=388 loops=1)
+                    Buffers: shared hit=125
+              ->  Index Scan using pesanan_2026_03_status_pesanan_idx on pesanan_2026_03 p_3  (cost=0.15..73.52 rows=360 width=25) (actual time=0.005..0.147 rows=360 loops=1)
+                    Buffers: shared hit=125
+              ->  Index Scan using pesanan_2026_04_status_pesanan_idx on pesanan_2026_04 p_4  (cost=0.15..85.76 rows=405 width=25) (actual time=0.004..0.164 rows=405 loops=1)
+                    Buffers: shared hit=143
+              ->  Index Scan using pesanan_2026_05_status_pesanan_idx on pesanan_2026_05 p_5  (cost=0.15..83.90 rows=408 width=25) (actual time=0.004..0.156 rows=408 loops=1)
+                    Buffers: shared hit=140
+              ->  Index Scan using pesanan_2026_06_status_pesanan_idx on pesanan_2026_06 p_6  (cost=0.15..77.75 rows=388 width=25) (actual time=0.004..0.150 rows=388 loops=1)
+                    Buffers: shared hit=135
+              ->  Index Scan using pesanan_2026_07_status_pesanan_idx on pesanan_2026_07 p_7  (cost=0.15..85.30 rows=418 width=25) (actual time=0.005..0.159 rows=418 loops=1)
+                    Buffers: shared hit=141
+              ->  Index Scan using pesanan_2026_08_status_pesanan_idx on pesanan_2026_08 p_8  (cost=0.15..78.37 rows=372 width=25) (actual time=0.005..0.147 rows=372 loops=1)
+                    Buffers: shared hit=135
+              ->  Index Scan using pesanan_2026_09_status_pesanan_idx on pesanan_2026_09 p_9  (cost=0.15..87.51 rows=454 width=25) (actual time=0.004..0.234 rows=454 loops=1)
+                    Buffers: shared hit=150
+              ->  Index Scan using pesanan_2026_10_status_pesanan_idx on pesanan_2026_10 p_10  (cost=0.15..76.41 rows=364 width=25) (actual time=0.005..0.144 rows=364 loops=1)
+                    Buffers: shared hit=127
+              ->  Index Scan using pesanan_2026_11_status_pesanan_idx on pesanan_2026_11 p_11  (cost=0.29..379.38 rows=10277 width=24) (actual time=0.006..0.134 rows=277 loops=1)
+                    Buffers: shared hit=114
+              ->  Seq Scan on pesanan_2026_12 p_12  (cost=0.00..0.00 rows=1 width=48) (actual time=0.004..0.004 rows=0 loops=1)
+                    Filter: (status_pesanan = ANY ('{PENDING,PAID}'::text[]))
+              ->  Seq Scan on pesanan_2027_01 p_13  (cost=0.00..0.00 rows=1 width=48) (actual time=0.002..0.002 rows=0 loops=1)
+                    Filter: (status_pesanan = ANY ('{PENDING,PAID}'::text[]))
+              ->  Seq Scan on pesanan_2027_02 p_14  (cost=0.00..0.00 rows=1 width=48) (actual time=0.001..0.001 rows=0 loops=1)
+                    Filter: (status_pesanan = ANY ('{PENDING,PAID}'::text[]))
+              ->  Seq Scan on pesanan_2027_03 p_15  (cost=0.00..0.00 rows=1 width=48) (actual time=0.002..0.002 rows=0 loops=1)
+                    Filter: (status_pesanan = ANY ('{PENDING,PAID}'::text[]))
+              ->  Seq Scan on pesanan_default p_16  (cost=0.00..0.00 rows=1 width=48) (actual time=0.001..0.002 rows=0 loops=1)
+                    Filter: (status_pesanan = ANY ('{PENDING,PAID}'::text[]))
+        ->  Hash  (cost=176.01..176.01 rows=5001 width=22) (actual time=0.781..0.781 rows=5001 loops=1)
+              Buckets: 8192  Batches: 1  Memory Usage: 337kB
+              Buffers: shared hit=126
+              ->  Seq Scan on pengguna u  (cost=0.00..176.01 rows=5001 width=22) (actual time=0.005..0.374 rows=5001 loops=1)
+                    Buffers: shared hit=126
+  ->  Hash  (cost=147.00..147.00 rows=8000 width=8) (actual time=0.952..0.952 rows=8000 loops=1)
+        Buckets: 8192  Batches: 1  Memory Usage: 377kB
+        Buffers: shared hit=67
+        ->  Seq Scan on sesi_jualan s  (cost=0.00..147.00 rows=8000 width=8) (actual time=0.010..0.403 rows=8000 loops=1)
+              Buffers: shared hit=67
+Planning:
+  Buffers: shared hit=33
+Planning Time: 1.195 ms
+Execution Time: 4.877 ms
+
+--- Skenario 5A (Non-Sargable date()) ---
+SQL: SELECT COUNT(*) FROM pesanan_danus WHERE date(waktu_pesan) = '2026-11-15';
+Aggregate  (cost=2833.04..2833.05 rows=1 width=8) (actual time=6.713..6.716 rows=1 loops=1)
+  Buffers: shared hit=346
+  ->  Append  (cost=0.29..2831.59 rows=580 width=0) (actual time=6.711..6.713 rows=0 loops=1)
+        Buffers: shared hit=346
+        ->  Index Only Scan using pesanan_2026_01_waktu_pesan_idx on pesanan_2026_01 pesanan_danus_1  (cost=0.29..203.72 rows=42 width=0) (actual time=0.555..0.555 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 8467
+              Heap Fetches: 0
+              Buffers: shared hit=26
+        ->  Index Only Scan using pesanan_2026_02_waktu_pesan_idx on pesanan_2026_02 pesanan_danus_2  (cost=0.29..211.10 rows=45 width=0) (actual time=0.546..0.546 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 9056
+              Heap Fetches: 0
+              Buffers: shared hit=27
+        ->  Index Only Scan using pesanan_2026_03_waktu_pesan_idx on pesanan_2026_03 pesanan_danus_3  (cost=0.29..217.18 rows=47 width=0) (actual time=0.547..0.547 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 9305
+              Heap Fetches: 0
+              Buffers: shared hit=28
+        ->  Index Only Scan using pesanan_2026_04_waktu_pesan_idx on pesanan_2026_04 pesanan_danus_4  (cost=0.29..240.00 rows=51 width=0) (actual time=0.614..0.614 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 10281
+              Heap Fetches: 0
+              Buffers: shared hit=31
+        ->  Index Only Scan using pesanan_2026_05_waktu_pesan_idx on pesanan_2026_05 pesanan_danus_5  (cost=0.29..236.84 rows=51 width=0) (actual time=0.623..0.623 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 10178
+              Heap Fetches: 0
+              Buffers: shared hit=30
+        ->  Index Only Scan using pesanan_2026_06_waktu_pesan_idx on pesanan_2026_06 pesanan_danus_6  (cost=0.29..221.54 rows=48 width=0) (actual time=0.560..0.560 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 9523
+              Heap Fetches: 0
+              Buffers: shared hit=28
+        ->  Index Only Scan using pesanan_2026_07_waktu_pesan_idx on pesanan_2026_07 pesanan_danus_7  (cost=0.29..245.59 rows=53 width=0) (actual time=0.624..0.624 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 10560
+              Heap Fetches: 0
+              Buffers: shared hit=31
+        ->  Index Only Scan using pesanan_2026_08_waktu_pesan_idx on pesanan_2026_08 pesanan_danus_8  (cost=0.29..233.26 rows=50 width=0) (actual time=0.592..0.592 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 9999
+              Heap Fetches: 0
+              Buffers: shared hit=30
+        ->  Index Only Scan using pesanan_2026_09_waktu_pesan_idx on pesanan_2026_09 pesanan_danus_9  (cost=0.29..250.16 rows=54 width=0) (actual time=0.646..0.646 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 10734
+              Heap Fetches: 0
+              Buffers: shared hit=32
+        ->  Index Only Scan using pesanan_2026_10_waktu_pesan_idx on pesanan_2026_10 pesanan_danus_10  (cost=0.29..220.92 rows=47 width=0) (actual time=0.563..0.563 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 9492
+              Heap Fetches: 0
+              Buffers: shared hit=28
+        ->  Index Only Scan using pesanan_2026_11_waktu_pesan_idx on pesanan_2026_11 pesanan_danus_11  (cost=0.29..548.34 rows=87 width=0) (actual time=0.829..0.829 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+              Rows Removed by Filter: 7406
+              Heap Fetches: 0
+              Buffers: shared hit=55
+        ->  Seq Scan on pesanan_2026_12 pesanan_danus_12  (cost=0.00..0.00 rows=1 width=0) (actual time=0.005..0.005 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+        ->  Seq Scan on pesanan_2027_01 pesanan_danus_13  (cost=0.00..0.00 rows=1 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+        ->  Seq Scan on pesanan_2027_02 pesanan_danus_14  (cost=0.00..0.00 rows=1 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+        ->  Seq Scan on pesanan_2027_03 pesanan_danus_15  (cost=0.00..0.00 rows=1 width=0) (actual time=0.001..0.001 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+        ->  Seq Scan on pesanan_default pesanan_danus_16  (cost=0.00..0.00 rows=1 width=0) (actual time=0.000..0.000 rows=0 loops=1)
+              Filter: (date(waktu_pesan) = '2026-11-15'::date)
+Planning:
+  Buffers: shared hit=20
+Planning Time: 0.552 ms
+Execution Time: 6.757 ms
+
+--- Skenario 5B (Sargable Range) ---
+SQL: SELECT COUNT(*) FROM pesanan_danus WHERE waktu_pesan >= '2026-11-15 00:00:00+07' AND waktu_pesan < '2026-11-16 00:00:00+07';
+Aggregate  (cost=391.81..391.82 rows=1 width=8) (actual time=0.018..0.019 rows=1 loops=1)
+  Buffers: shared hit=33
+  ->  Index Only Scan using pesanan_2026_11_waktu_pesan_idx on pesanan_2026_11 pesanan_danus  (cost=0.29..367.05 rows=9903 width=0) (actual time=0.017..0.018 rows=0 loops=1)
+        Index Cond: ((waktu_pesan >= '2026-11-15 00:00:00+07'::timestamp with time zone) AND (waktu_pesan < '2026-11-16 00:00:00+07'::timestamp with time zone))
+        Heap Fetches: 0
+        Buffers: shared hit=33
+Planning Time: 0.075 ms
+Execution Time: 0.027 ms
+
