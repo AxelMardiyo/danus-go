@@ -1,47 +1,99 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" style="background-color: #FFFFFF; font-family: Arial, sans-serif;">
-<text x="400.0" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#1B365D">Perbandingan Pemindaian Blok Memori Buffer (Shared Hits & Reads)</text>
-<rect x="530" y="25" width="16" height="12" fill="#E53E3E" rx="2"/>
-<text x="552" y="35" font-size="11" fill="#4A5568">Tanpa Indeks (Baseline)</text>
-<rect x="650" y="25" width="16" height="12" fill="#3182CE" rx="2"/>
-<text x="672" y="35" font-size="11" fill="#4A5568">Dengan Indeks</text>
-<line x1="90" y1="370" x2="750" y2="370" stroke="#CBD5E0" stroke-width="1.5"/>
-<line x1="90" y1="60" x2="90" y2="370" stroke="#CBD5E0" stroke-width="1.5"/>
-<text x="-225.0" y="25" text-anchor="middle" transform="rotate(-90)" font-size="12" font-weight="bold" fill="#4A5568">Jumlah Blok Halaman (8 KB Page)</text>
-<line x1="90" y1="370.0" x2="750" y2="370.0" stroke="#EDF2F7" stroke-width="1"/>
-<text x="80" y="374.0" text-anchor="end" font-size="10" fill="#718096">0.0</text>
-<line x1="90" y1="308.0" x2="750" y2="308.0" stroke="#EDF2F7" stroke-width="1"/>
-<text x="80" y="312.0" text-anchor="end" font-size="10" fill="#718096">428.3</text>
-<line x1="90" y1="246.0" x2="750" y2="246.0" stroke="#EDF2F7" stroke-width="1"/>
-<text x="80" y="250.0" text-anchor="end" font-size="10" fill="#718096">856.5</text>
-<line x1="90" y1="184.0" x2="750" y2="184.0" stroke="#EDF2F7" stroke-width="1"/>
-<text x="80" y="188.0" text-anchor="end" font-size="10" fill="#718096">1284.8</text>
-<line x1="90" y1="122.0" x2="750" y2="122.0" stroke="#EDF2F7" stroke-width="1"/>
-<text x="80" y="126.0" text-anchor="end" font-size="10" fill="#718096">1713.0</text>
-<line x1="90" y1="60.0" x2="750" y2="60.0" stroke="#EDF2F7" stroke-width="1"/>
-<text x="80" y="64.0" text-anchor="end" font-size="10" fill="#718096">2141.3</text>
-<rect x="110.75999999999999" y="360.30028487367485" width="42.24" height="9.699715126325131" fill="#E53E3E" rx="3"/>
-<text x="131.88" y="355.30028487367485" text-anchor="middle" font-size="9" font-weight="bold" fill="#C53030">67.00</text>
-<rect x="159.0" y="369.5656843973287" width="42.24" height="0.4343156026712745" fill="#3182CE" rx="3"/>
-<text x="180.12" y="364.5656843973287" text-anchor="middle" font-size="9" font-weight="bold" fill="#2B6CB0">3.00</text>
-<text x="156.0" y="390" text-anchor="middle" font-size="11" font-weight="bold" fill="#2D3748">1. Radar Sesi</text>
-<rect x="242.76" y="128.3757530472143" width="42.24" height="241.6242469527857" fill="#E53E3E" rx="3"/>
-<text x="263.88" y="123.37575304721429" text-anchor="middle" font-size="9" font-weight="bold" fill="#C53030">1669.00</text>
-<rect x="291.0" y="365.3673002381731" width="42.24" height="4.632699761826928" fill="#3182CE" rx="3"/>
-<text x="312.12" y="360.3673002381731" text-anchor="middle" font-size="9" font-weight="bold" fill="#2B6CB0">32.00</text>
-<text x="288.0" y="390" text-anchor="middle" font-size="11" font-weight="bold" fill="#2D3748">2. Riwayat User</text>
-<rect x="374.76" y="141.69476486246668" width="42.24" height="228.30523513753332" fill="#E53E3E" rx="3"/>
-<text x="395.88" y="136.69476486246668" text-anchor="middle" font-size="9" font-weight="bold" fill="#C53030">1577.00</text>
-<rect x="423.0" y="141.69476486246668" width="42.24" height="228.30523513753332" fill="#3182CE" rx="3"/>
-<text x="444.12" y="136.69476486246668" text-anchor="middle" font-size="9" font-weight="bold" fill="#2B6CB0">1577.00</text>
-<text x="420.0" y="390" text-anchor="middle" font-size="11" font-weight="bold" fill="#2D3748">3. Omzet Bulan</text>
-<rect x="506.76" y="100.43478260869563" width="42.24" height="269.5652173913044" fill="#E53E3E" rx="3"/>
-<text x="527.88" y="95.43478260869563" text-anchor="middle" font-size="9" font-weight="bold" fill="#C53030">1862.00</text>
-<rect x="555.0" y="131.12641853079904" width="42.24" height="238.87358146920096" fill="#3182CE" rx="3"/>
-<text x="576.12" y="126.12641853079904" text-anchor="middle" font-size="9" font-weight="bold" fill="#2B6CB0">1650.00</text>
-<text x="552.0" y="390" text-anchor="middle" font-size="11" font-weight="bold" fill="#2D3748">4. Antrean Seller</text>
-<rect x="638.76" y="360.15551300611776" width="42.24" height="9.844486993882223" fill="#E53E3E" rx="3"/>
-<text x="659.88" y="355.15551300611776" text-anchor="middle" font-size="9" font-weight="bold" fill="#C53030">68.00</text>
-<rect x="687.0" y="365.222528370616" width="42.24" height="4.77747162938402" fill="#3182CE" rx="3"/>
-<text x="708.12" y="360.222528370616" text-anchor="middle" font-size="9" font-weight="bold" fill="#2B6CB0">33.00</text>
-<text x="684.0" y="390" text-anchor="middle" font-size="11" font-weight="bold" fill="#2D3748">5. Sargable Range</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="470" viewBox="0 0 850 470" style="background-color: #FFFFFF; font-family: Arial, sans-serif;">
+  <!-- Judul dan Sub-judul -->
+  <text x="425" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#1B365D">Perbandingan Konsumsi Buffer I/O: Sebelum vs Sesudah Optimasi (Bab 7)</text>
+  <text x="425" y="52" text-anchor="middle" font-size="11" fill="#64748b">Jumlah Blok Halaman 8 KB yang Disentuh di Shared Buffers (PostgreSQL 16)</text>
+
+  <!-- Legend Bebas Tabrakan -->
+  <rect x="420" y="68" width="16" height="12" fill="#E53E3E" rx="3"/>
+  <text x="444" y="78" font-size="11" font-weight="bold" fill="#4A5568">Tanpa Indeks (Baseline)</text>
+
+  <rect x="630" y="68" width="16" height="12" fill="#3182CE" rx="3"/>
+  <text x="654" y="78" font-size="11" font-weight="bold" fill="#4A5568">Dengan Indeks Sekunder</text>
+
+  <!-- Garis Sumbu Utama -->
+  <line x1="85" y1="350" x2="800" y2="350" stroke="#CBD5E0" stroke-width="1.5"/>
+  <line x1="85" y1="90" x2="85" y2="350" stroke="#CBD5E0" stroke-width="1.5"/>
+  <text x="-220" y="26" text-anchor="middle" transform="rotate(-90)" font-size="11" font-weight="bold" fill="#4A5568">Jumlah Blok Halaman (8 KB Page)</text>
+
+  <!-- Grid Horisontal dan Label Y-Axis (Skala 0 - 2000 buffer) -->
+  <line x1="85" y1="350" x2="800" y2="350" stroke="#EDF2F7" stroke-width="1"/>
+  <text x="75" y="354" text-anchor="end" font-size="10" fill="#718096">0</text>
+
+  <line x1="85" y1="285" x2="800" y2="285" stroke="#EDF2F7" stroke-width="1" stroke-dasharray="3"/>
+  <text x="75" y="289" text-anchor="end" font-size="10" fill="#718096">500</text>
+
+  <line x1="85" y1="220" x2="800" y2="220" stroke="#EDF2F7" stroke-width="1" stroke-dasharray="3"/>
+  <text x="75" y="224" text-anchor="end" font-size="10" fill="#718096">1.000</text>
+
+  <line x1="85" y1="155" x2="800" y2="155" stroke="#EDF2F7" stroke-width="1" stroke-dasharray="3"/>
+  <text x="75" y="159" text-anchor="end" font-size="10" fill="#718096">1.500</text>
+
+  <line x1="85" y1="90" x2="800" y2="90" stroke="#EDF2F7" stroke-width="1" stroke-dasharray="3"/>
+  <text x="75" y="94" text-anchor="end" font-size="10" fill="#718096">2.000</text>
+
+  <!-- ================= GROUP 1: S1 Radar Sesi ================= -->
+  <!-- Red: 67 buffer -> h=8px -->
+  <rect x="120" y="342" width="38" height="8" fill="#E53E3E" rx="2"/>
+  <text x="139" y="333" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">67</text>
+
+  <!-- Blue: 3 buffer -> h=2px -->
+  <rect x="165" y="348" width="38" height="2" fill="#3182CE" rx="1"/>
+  <text x="184" y="344" text-anchor="middle" font-size="10" font-weight="bold" fill="#2B6CB0">3</text>
+
+  <text x="162" y="372" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e293b">1. Radar Sesi</text>
+  <text x="162" y="388" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">-95.5% I/O</text>
+
+  <!-- ================= GROUP 2: S2 Riwayat User ================= -->
+  <!-- Red: 1669 buffer -> h=217px -->
+  <rect x="255" y="133" width="38" height="217" fill="#E53E3E" rx="3"/>
+  <text x="274" y="125" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">1.669</text>
+
+  <!-- Blue: 32 buffer -> h=4px -->
+  <rect x="300" y="346" width="38" height="4" fill="#3182CE" rx="1"/>
+  <text x="319" y="340" text-anchor="middle" font-size="10" font-weight="bold" fill="#2B6CB0">32</text>
+
+  <text x="297" y="372" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e293b">2. Riwayat User</text>
+  <text x="297" y="388" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">-98.1% I/O</text>
+
+  <!-- ================= GROUP 3: S3 Omzet Bulan ================= -->
+  <!-- Red: 1577 buffer -> h=205px -->
+  <rect x="390" y="145" width="38" height="205" fill="#E53E3E" rx="3"/>
+  <text x="409" y="137" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">1.577</text>
+
+  <!-- Blue: 1577 buffer -> h=205px -->
+  <rect x="435" y="145" width="38" height="205" fill="#3182CE" rx="3"/>
+  <text x="454" y="149" text-anchor="middle" font-size="10" font-weight="bold" fill="#2B6CB0">1.577</text>
+
+  <text x="432" y="372" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e293b">3. Omzet Bulan</text>
+  <text x="432" y="388" text-anchor="middle" font-size="10" fill="#64748b">Pruning Aktif</text>
+
+  <!-- ================= GROUP 4: S4 Antrean Seller ================= -->
+  <!-- Red: 1862 buffer -> h=242px -->
+  <rect x="525" y="108" width="38" height="242" fill="#E53E3E" rx="3"/>
+  <text x="544" y="100" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">1.862</text>
+
+  <!-- Blue: 1650 buffer -> h=215px -->
+  <rect x="570" y="135" width="38" height="215" fill="#3182CE" rx="3"/>
+  <text x="589" y="127" text-anchor="middle" font-size="10" font-weight="bold" fill="#2B6CB0">1.650</text>
+
+  <text x="567" y="372" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e293b">4. Antrean Seller</text>
+  <text x="567" y="388" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">-11.4% I/O</text>
+
+  <!-- ================= GROUP 5: S5 Sargable Range ================= -->
+  <!-- Red: 68 buffer -> h=8px -->
+  <rect x="660" y="342" width="38" height="8" fill="#E53E3E" rx="2"/>
+  <text x="679" y="333" text-anchor="middle" font-size="10" font-weight="bold" fill="#C53030">68</text>
+
+  <!-- Blue: 33 buffer -> h=4px -->
+  <rect x="705" y="346" width="38" height="4" fill="#3182CE" rx="1"/>
+  <text x="724" y="344" text-anchor="middle" font-size="10" font-weight="bold" fill="#2B6CB0">33</text>
+
+  <text x="702" y="372" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e293b">5. Sargable Range</text>
+  <text x="702" y="388" text-anchor="middle" font-size="10" font-weight="bold" fill="#059669">-51.5% I/O</text>
+
+  <!-- Bottom Annotation Box -->
+  <rect x="85" y="414" width="715" height="34" fill="#F8FAFC" stroke="#CBD5E1" rx="6" />
+  <text x="442" y="435" font-size="11" fill="#475569" text-anchor="middle">
+    Reduksi I/O signifikan: Pemindaian data pesanan pengguna turun drastis dari 12,3 MB menjadi 256 kB di RAM.
+  </text>
 </svg>

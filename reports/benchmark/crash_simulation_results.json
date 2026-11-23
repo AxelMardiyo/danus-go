@@ -1,0 +1,58 @@
+{
+  "scenario_1_without_checkpoint": {
+    "scenario": "Scenario 1: Crash Tanpa Checkpoint Eksplisit",
+    "lsn_initial": "0/82E7950",
+    "txid_t1_committed": 989,
+    "lsn_t1": "0/82E79C0",
+    "txid_t2_uncommitted": 990,
+    "lsn_t2": "0/82E79C0",
+    "kuota_dirty_pre_crash": 50,
+    "kuota_final_post_recovery": 90,
+    "durability_verified": true,
+    "atomicity_verified": true,
+    "lsn_post_recovery": "0/82E7AB8",
+    "recovery_logs": [
+      "2026-11-24 00:55:08.740 WIB [29] LOG:  database system was shut down at 2026-11-24 00:55:08 WIB",
+      "2026-11-24 00:55:08.746 WIB [1] LOG:  database system is ready to accept connections",
+      "2026-11-24 00:56:07.177 WIB [29] LOG:  database system was not properly shut down; automatic recovery in progress",
+      "2026-11-24 00:56:07.180 WIB [29] LOG:  redo starts at 0/82C0B18",
+      "2026-11-24 00:56:07.181 WIB [29] LOG:  redo done at 0/82E7A08 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s",
+      "2026-11-24 00:56:07.185 WIB [27] LOG:  checkpoint starting: end-of-recovery immediate wait",
+      "2026-11-24 00:56:07.203 WIB [27] LOG:  checkpoint complete: wrote 38 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.007 s, total=0.020 s; sync files=29, longest=0.002 s, average=0.001 s; distance=155 kB, estimate=155 kB; lsn=0/82E7A40, redo lsn=0/82E7A40",
+      "2026-11-24 00:56:07.208 WIB [1] LOG:  database system is ready to accept connections"
+    ],
+    "wal_sample": ""
+  },
+  "scenario_2_with_checkpoint": {
+    "scenario": "Scenario 2: Crash Dengan Checkpoint Eksplisit",
+    "txid_t3_committed": 991,
+    "lsn_t3": "0/82E7C70",
+    "lsn_checkpoint": "0/82E7D20",
+    "txid_t4_uncommitted": 992,
+    "lsn_t4": "0/82E7D20",
+    "kuota_dirty_pre_crash": 50,
+    "kuota_final_post_recovery": 80,
+    "durability_verified": true,
+    "atomicity_verified": true,
+    "lsn_post_recovery": "0/82E7D98",
+    "recovery_logs": [
+      "2026-11-24 00:55:08.746 WIB [1] LOG:  database system is ready to accept connections",
+      "2026-11-24 00:56:07.177 WIB [29] LOG:  database system was not properly shut down; automatic recovery in progress",
+      "2026-11-24 00:56:07.180 WIB [29] LOG:  redo starts at 0/82C0B18",
+      "2026-11-24 00:56:07.181 WIB [29] LOG:  redo done at 0/82E7A08 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s",
+      "2026-11-24 00:56:07.185 WIB [27] LOG:  checkpoint starting: end-of-recovery immediate wait",
+      "2026-11-24 00:56:07.203 WIB [27] LOG:  checkpoint complete: wrote 38 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.007 s, total=0.020 s; sync files=29, longest=0.002 s, average=0.001 s; distance=155 kB, estimate=155 kB; lsn=0/82E7A40, redo lsn=0/82E7A40",
+      "2026-11-24 00:56:07.208 WIB [1] LOG:  database system is ready to accept connections",
+      "2026-11-24 00:56:08.551 WIB [27] LOG:  checkpoint starting: immediate force wait",
+      "2026-11-24 00:56:08.565 WIB [27] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.004 s, total=0.014 s; sync files=5, longest=0.002 s, average=0.001 s; distance=0 kB, estimate=140 kB; lsn=0/82E7CA8, redo lsn=0/82E7C70",
+      "2026-11-24 00:56:10.901 WIB [29] LOG:  database system was not properly shut down; automatic recovery in progress",
+      "2026-11-24 00:56:10.903 WIB [29] LOG:  redo starts at 0/82E7C70",
+      "2026-11-24 00:56:10.904 WIB [29] LOG:  redo done at 0/82E7CA8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s",
+      "2026-11-24 00:56:10.908 WIB [27] LOG:  checkpoint starting: end-of-recovery immediate wait",
+      "2026-11-24 00:56:10.919 WIB [27] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.002 s, total=0.013 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/82E7D20, redo lsn=0/82E7D20",
+      "2026-11-24 00:56:10.923 WIB [1] LOG:  database system is ready to accept connections"
+    ],
+    "wal_sample": ""
+  },
+  "waldump_raw": "first record is after 0/82E7000, at 0/82E70B0, skipping over 176 bytes\nrmgr: Storage     len (rec/tot):     46/    46, tx:        988, lsn: 0/082E70B0, prev 0/082E6FF0, desc: TRUNCATE base/16384/17920 to 0 blocks flags 7\nrmgr: Storage     len (rec/tot):     46/    46, tx:        988, lsn: 0/082E70E0, prev 0/082E70B0, desc: TRUNCATE base/16384/17925 to 0 blocks flags 7\nrmgr: XLOG        len (rec/tot):     49/   137, tx:        988, lsn: 0/082E7110, prev 0/082E70E0, desc: FPI , blkref #0: rel 1663/16384/17925 blk 0 FPW\nrmgr: Storage     len (rec/tot):     46/    46, tx:        988, lsn: 0/082E71A0, prev 0/082E7110, desc: TRUNCATE base/16384/17923 to 0 blocks flags 7\nrmgr: Storage     len (rec/tot):     46/    46, tx:        988, lsn: 0/082E71D0, prev 0/082E71A0, desc: TRUNCATE base/16384/17924 to 0 blocks flags 7\nrmgr: XLOG        len (rec/tot):     49/   137, tx:        988, lsn: 0/082E7200, prev 0/082E71D0, desc: FPI , blkref #0: rel 1663/16384/17924 blk 0 FPW\nrmgr: Heap        len (rec/tot):    103/   103, tx:        988, lsn: 0/082E7290, prev 0/082E7200, desc: INSERT+INIT off: 1, flags: 0x00, blkref #0: rel 1663/16384/17920 blk 0\nrmgr: Btree       len (rec/tot):     90/    90, tx:        988, lsn: 0/082E72F8, prev 0/082E7290, desc: NEWROOT level: 0, blkref #0: rel 1663/16384/17925 blk 1, blkref #2: rel 1663/16384/17925 blk 0\nrmgr: Btree       len (rec/tot):     64/    64, tx:        988, lsn: 0/082E7358, prev 0/082E72F8, desc: INSERT_LEAF off: 1, blkref #0: rel 1663/16384/17925 blk 1\nrmgr: Transaction len (rec/tot):   1461/  1461, tx:        988, lsn: 0/082E7398, prev 0/082E7358, desc: COMMIT 2026-11-24 00:56:04.576287 WIB; inval msgs: catcache 80 catcache 79 catcache 80 catcache 79 catcache 55 catcache 54 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 55 catcache 54 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 7 catcache 6 catcache 55 catcache 54 catcache 7 catcache 6 catcache 7 catcache 6 catcache 32 catcache 55 catcache 54 catcache 55 catcache 54 catcache 55 catcache 54 catcache 55 catcache 54 catcache 7 catcache 6 catcache 32 catcache 19 catcache 55 catcache 54 catcache 55 catcache 54 snapshot 2608 relcache 17920 relcache 17923 relcache 17924 relcache 17923 snapshot 2608 relcache 17923 relcache 17924 relcache 17920 snapshot 2608 relcache 17925 relcache 17920 snapshot 2608 relcache 17920 relcache 17925 relcache 17920 relcache 17925 relcache 17923 relcache 17924\nrmgr: Heap        len (rec/tot):     71/    71, tx:        989, lsn: 0/082E7950, prev 0/082E7398, desc: HOT_UPDATE old_xmax: 989, old_off: 1, old_infobits: [], flags: 0x60, new_xmax: 0, new_off: 2, blkref #0: rel 1663/16384/17920 blk 0\nrmgr: Transaction len (rec/tot):     34/    34, tx:        989, lsn: 0/082E7998, prev 0/082E7950, desc: COMMIT 2026-11-24 00:56:04.596041 WIB\nrmgr: Heap        len (rec/tot):     71/    71, tx:        990, lsn: 0/082E79C0, prev 0/082E7998, desc: HOT_UPDATE old_xmax: 990, old_off: 2, old_infobits: [], flags: 0x60, new_xmax: 0, new_off: 3, blkref #0: rel 1663/16384/17920 blk 0\nrmgr: Standby     len (rec/tot):     54/    54, tx:          0, lsn: 0/082E7A08, prev 0/082E79C0, desc: RUNNING_XACTS nextXid 991 latestCompletedXid 989 oldestRunningXid 990; 1 xacts: 990\nrmgr: XLOG        len (rec/tot):    114/   114, tx:          0, lsn: 0/082E7A40, prev 0/082E7A08, desc: CHECKPOINT_SHUTDOWN redo 0/82E7A40; tli 1; prev tli 1; fpw true; xid 0:991; oid 26112; multi 1; offset 0; oldest xid 723 in DB 1; oldest multi 1 in DB 1; oldest/newest commit timestamp xid: 0/0; oldest running xid 0; shutdown\nrmgr: Heap        len (rec/tot):     65/   393, tx:        991, lsn: 0/082E7AB8, prev 0/082E7A40, desc: HOT_UPDATE old_xmax: 991, old_off: 2, old_infobits: [], flags: 0x60, new_xmax: 0, new_off: 4, blkref #0: rel 1663/16384/17920 blk 0 FPW\nrmgr: Transaction len (rec/tot):     34/    34, tx:        991, lsn: 0/082E7C48, prev 0/082E7AB8, desc: COMMIT 2026-11-24 00:56:08.548753 WIB\nrmgr: Standby     len (rec/tot):     50/    50, tx:          0, lsn: 0/082E7C70, prev 0/082E7C48, desc: RUNNING_XACTS nextXid 992 latestCompletedXid 991 oldestRunningXid 992\nrmgr: XLOG        len (rec/tot):    114/   114, tx:          0, lsn: 0/082E7CA8, prev 0/082E7C70, desc: CHECKPOINT_ONLINE redo 0/82E7C70; tli 1; prev tli 1; fpw true; xid 0:992; oid 26112; multi 1; offset 0; oldest xid 723 in DB 1; oldest multi 1 in DB 1; oldest/newest commit timestamp xid: 0/0; oldest running xid 992; online\nrmgr: XLOG        len (rec/tot):    114/   114, tx:          0, lsn: 0/082E7D20, prev 0/082E7CA8, desc: CHECKPOINT_SHUTDOWN redo 0/82E7D20; tli 1; prev tli 1; fpw true; xid 0:992; oid 26112; multi 1; offset 0; oldest xid 723 in DB 1; oldest multi 1 in DB 1; oldest/newest commit timestamp xid: 0/0; oldest running xid 0; shutdown\n"
+}

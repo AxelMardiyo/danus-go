@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 440" width="100%" height="100%" style="font-family: Arial, sans-serif; background-color: #ffffff;">
+  <!-- Judul dan Sub-judul -->
+  <text x="425" y="32" font-size="18" font-weight="bold" text-anchor="middle" fill="#1e293b">Optimasi Kueri Analitik OLAP: On-The-Fly vs Materialized View (Bab 13)</text>
+  <text x="425" y="52" font-size="12" fill="#64748b" text-anchor="middle">Agregasi Penjualan Bulanan (124,702 Baris Fakta DW) pada PostgreSQL 16</text>
+
+  <!-- Garis Sumbu dan Grid -->
+  <line x1="110" y1="80" x2="110" y2="310" stroke="#cbd5e1" stroke-width="1.5" />
+  <line x1="110" y1="310" x2="740" y2="310" stroke="#cbd5e1" stroke-width="1.5" />
+  <line x1="110" y1="230" x2="740" y2="230" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="4" />
+  <line x1="110" y1="150" x2="740" y2="150" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="4" />
+
+  <!-- Label Sumbu Y -->
+  <text x="100" y="314" font-size="11" fill="#64748b" text-anchor="end">0 ms</text>
+  <text x="100" y="234" font-size="11" fill="#64748b" text-anchor="end">25 ms</text>
+  <text x="100" y="154" font-size="11" fill="#64748b" text-anchor="end">50 ms</text>
+
+  <!-- Batang On-the-fly -->
+  <rect x="200" y="98" width="130" height="212" fill="#ef4444" rx="4" />
+  <text x="265" y="86" font-size="13" font-weight="bold" fill="#dc2626" text-anchor="middle">53.04 ms</text>
+  <text x="265" y="332" font-size="13" font-weight="bold" fill="#334155" text-anchor="middle">On-The-Fly Aggregation</text>
+  <text x="265" y="350" font-size="11" fill="#64748b" text-anchor="middle">Scan Penuh 124,702 Fakta</text>
+
+  <!-- Center Speedup Callout Badge -->
+  <rect x="365" y="175" width="120" height="56" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5" rx="8" />
+  <text x="425" y="198" font-size="16" font-weight="bold" fill="#047857" text-anchor="middle">1.325x</text>
+  <text x="425" y="218" font-size="11" font-weight="bold" fill="#059669" text-anchor="middle">Lebih Cepat</text>
+
+  <!-- Batang Materialized View -->
+  <rect x="520" y="308" width="130" height="2" fill="#10b981" rx="1" />
+  <text x="585" y="298" font-size="13" font-weight="bold" fill="#059669" text-anchor="middle">0.04 ms</text>
+  <text x="585" y="332" font-size="13" font-weight="bold" fill="#334155" text-anchor="middle">Materialized View</text>
+  <text x="585" y="350" font-size="11" font-weight="bold" fill="#059669" text-anchor="middle">Hasil Terpra-hitung (Instan)</text>
+
+  <!-- Info Box Bawah -->
+  <rect x="110" y="380" width="630" height="34" fill="#f8fafc" stroke="#e2e8f0" rx="6" />
+  <text x="425" y="401" font-size="11" fill="#475569" text-anchor="middle">
+    Reduksi Latensi Kueri: 99.9% | Beban I/O Shared Buffers Berkurang 66.7% (Hanya 1 Blok Buffer)
+  </text>
+</svg>

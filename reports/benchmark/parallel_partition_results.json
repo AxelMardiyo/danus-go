@@ -1,0 +1,443 @@
+{
+  "storage": {
+    "flat": {
+      "rows": 105001,
+      "table_size": "8256 kB",
+      "total_size": "12 MB",
+      "bytes": 8454144
+    },
+    "hash": {
+      "total_size": "0 bytes",
+      "partitions": {
+        "pesanan_hash_p0": {
+          "rows": 25441,
+          "size": "2000 kB",
+          "bytes": 2048000
+        },
+        "pesanan_hash_p1": {
+          "rows": 26754,
+          "size": "2104 kB",
+          "bytes": 2154496
+        },
+        "pesanan_hash_p2": {
+          "rows": 26599,
+          "size": "2096 kB",
+          "bytes": 2146304
+        },
+        "pesanan_hash_p3": {
+          "rows": 26207,
+          "size": "2064 kB",
+          "bytes": 2113536
+        }
+      }
+    },
+    "range": {
+      "total_size": "0 bytes",
+      "partitions": {
+        "pesanan_2026_01": {
+          "rows": 8467,
+          "size": "1024 kB",
+          "bytes": 1048576
+        },
+        "pesanan_2026_02": {
+          "rows": 9056,
+          "size": "1056 kB",
+          "bytes": 1081344
+        },
+        "pesanan_2026_03": {
+          "rows": 9305,
+          "size": "1080 kB",
+          "bytes": 1105920
+        },
+        "pesanan_2026_04": {
+          "rows": 10281,
+          "size": "1200 kB",
+          "bytes": 1228800
+        },
+        "pesanan_2026_05": {
+          "rows": 10178,
+          "size": "1184 kB",
+          "bytes": 1212416
+        },
+        "pesanan_2026_06": {
+          "rows": 9523,
+          "size": "1112 kB",
+          "bytes": 1138688
+        },
+        "pesanan_2026_07": {
+          "rows": 10560,
+          "size": "1232 kB",
+          "bytes": 1261568
+        },
+        "pesanan_2026_08": {
+          "rows": 9999,
+          "size": "1160 kB",
+          "bytes": 1187840
+        },
+        "pesanan_2026_09": {
+          "rows": 10734,
+          "size": "1248 kB",
+          "bytes": 1277952
+        },
+        "pesanan_2026_10": {
+          "rows": 9492,
+          "size": "1104 kB",
+          "bytes": 1130496
+        },
+        "pesanan_2026_11": {
+          "rows": 7406,
+          "size": "864 kB",
+          "bytes": 884736
+        }
+      }
+    }
+  },
+  "pruning": {
+    "time_filter": {
+      "range": {
+        "time_ms": 0.657,
+        "scanned": [],
+        "plan": [
+          "Aggregate  (cost=245.93..245.94 rows=1 width=16) (actual time=0.654..0.654 rows=1 loops=1)",
+          "  Buffers: shared hit=25",
+          "  ->  Index Only Scan using pesanan_2026_11_waktu_pesan_idx on pesanan_2026_11 pesanan_danus  (cost=0.28..208.90 rows=7406 width=8) (actual time=0.017..0.410 rows=7406 loops=1)",
+          "        Index Cond: ((waktu_pesan >= '2026-11-01 00:00:00+07'::timestamp with time zone) AND (waktu_pesan < '2026-12-01 00:00:00+07'::timestamp with time zone))",
+          "        Heap Fetches: 0",
+          "        Buffers: shared hit=25",
+          "Planning:",
+          "  Buffers: shared hit=6",
+          "Planning Time: 0.073 ms",
+          "Execution Time: 0.661 ms"
+        ]
+      },
+      "hash": {
+        "time_ms": 3.773,
+        "scanned": [
+          "->  Seq Scan on pesanan_hash_p0 pesanan_hash_1  (cost=0.00..631.62 rows=1748 width=8) (actual time=0.883..1.003 rows=1752 loops=1)",
+          "->  Seq Scan on pesanan_hash_p1 pesanan_hash_2  (cost=0.00..664.31 rows=1971 width=8) (actual time=0.939..1.034 rows=1908 loops=1)",
+          "->  Seq Scan on pesanan_hash_p2 pesanan_hash_3  (cost=0.00..660.99 rows=1959 width=8) (actual time=0.636..0.730 rows=1906 loops=1)",
+          "->  Seq Scan on pesanan_hash_p3 pesanan_hash_4  (cost=0.00..651.11 rows=1910 width=8) (actual time=0.642..0.735 rows=1840 loops=1)"
+        ],
+        "plan": [
+          "Aggregate  (cost=2683.89..2683.91 rows=1 width=16) (actual time=4.094..4.096 rows=1 loops=1)",
+          "  Buffers: shared hit=1033",
+          "  ->  Append  (cost=0.00..2645.95 rows=7588 width=8) (actual time=0.883..3.840 rows=7406 loops=1)",
+          "        Buffers: shared hit=1033",
+          "        ->  Seq Scan on pesanan_hash_p0 pesanan_hash_1  (cost=0.00..631.62 rows=1748 width=8) (actual time=0.883..1.003 rows=1752 loops=1)",
+          "              Filter: ((waktu_pesan >= '2026-11-01 00:00:00+07'::timestamp with time zone) AND (waktu_pesan < '2026-12-01 00:00:00+07'::timestamp with time zone))",
+          "              Rows Removed by Filter: 23689",
+          "              Buffers: shared hit=250",
+          "        ->  Seq Scan on pesanan_hash_p1 pesanan_hash_2  (cost=0.00..664.31 rows=1971 width=8) (actual time=0.939..1.034 rows=1908 loops=1)",
+          "              Filter: ((waktu_pesan >= '2026-11-01 00:00:00+07'::timestamp with time zone) AND (waktu_pesan < '2026-12-01 00:00:00+07'::timestamp with time zone))",
+          "              Rows Removed by Filter: 24846",
+          "              Buffers: shared hit=263",
+          "        ->  Seq Scan on pesanan_hash_p2 pesanan_hash_3  (cost=0.00..660.99 rows=1959 width=8) (actual time=0.636..0.730 rows=1906 loops=1)",
+          "              Filter: ((waktu_pesan >= '2026-11-01 00:00:00+07'::timestamp with time zone) AND (waktu_pesan < '2026-12-01 00:00:00+07'::timestamp with time zone))",
+          "              Rows Removed by Filter: 24693",
+          "              Buffers: shared hit=262",
+          "        ->  Seq Scan on pesanan_hash_p3 pesanan_hash_4  (cost=0.00..651.11 rows=1910 width=8) (actual time=0.642..0.735 rows=1840 loops=1)",
+          "              Filter: ((waktu_pesan >= '2026-11-01 00:00:00+07'::timestamp with time zone) AND (waktu_pesan < '2026-12-01 00:00:00+07'::timestamp with time zone))",
+          "              Rows Removed by Filter: 24367",
+          "              Buffers: shared hit=258",
+          "Planning Time: 0.101 ms",
+          "Execution Time: 4.112 ms"
+        ]
+      },
+      "flat": {
+        "time_ms": 1.892,
+        "plan": [
+          "Aggregate  (cost=1733.15..1733.16 rows=1 width=16) (actual time=1.937..1.938 rows=1 loops=1)",
+          "  Buffers: shared hit=514",
+          "  ->  Index Only Scan using pesanan_flat_pkey on pesanan_flat  (cost=0.42..1694.41 rows=7748 width=8) (actual time=0.017..1.699 rows=7406 loops=1)",
+          "        Index Cond: ((waktu_pesan >= '2026-11-01 00:00:00+07'::timestamp with time zone) AND (waktu_pesan < '2026-12-01 00:00:00+07'::timestamp with time zone))",
+          "        Heap Fetches: 0",
+          "        Buffers: shared hit=514",
+          "Planning Time: 0.079 ms",
+          "Execution Time: 1.959 ms"
+        ]
+      }
+    },
+    "entity_filter": {
+      "range": {
+        "time_ms": 0.07,
+        "scanned": [
+          "->  Seq Scan on pesanan_2026_12 pesanan_danus_12  (cost=0.00..0.00 rows=1 width=8) (actual time=0.001..0.001 rows=0 loops=1)",
+          "->  Seq Scan on pesanan_2027_01 pesanan_danus_13  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0 loops=1)",
+          "->  Seq Scan on pesanan_2027_02 pesanan_danus_14  (cost=0.00..0.00 rows=1 width=8) (actual time=0.002..0.002 rows=0 loops=1)",
+          "->  Seq Scan on pesanan_2027_03 pesanan_danus_15  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0 loops=1)",
+          "->  Seq Scan on pesanan_default pesanan_danus_16  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0 loops=1)"
+        ],
+        "plan": [
+          "Aggregate  (cost=16.99..17.00 rows=1 width=16) (actual time=0.108..0.109 rows=1 loops=1)",
+          "  Buffers: shared hit=33",
+          "  ->  Append  (cost=0.29..16.85 rows=27 width=8) (actual time=0.004..0.106 rows=27 loops=1)",
+          "        Buffers: shared hit=33",
+          "        ->  Index Only Scan using pesanan_2026_01_id_mahasiswa_waktu_pesan_idx on pesanan_2026_01 pesanan_danus_1  (cost=0.29..2.52 rows=2 width=8) (actual time=0.003..0.004 rows=1 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_02_id_mahasiswa_waktu_pesan_idx on pesanan_2026_02 pesanan_danus_2  (cost=0.29..1.42 rows=2 width=8) (actual time=0.006..0.006 rows=1 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_03_id_mahasiswa_waktu_pesan_idx on pesanan_2026_03 pesanan_danus_3  (cost=0.29..1.42 rows=2 width=8) (actual time=0.040..0.040 rows=3 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_04_id_mahasiswa_waktu_pesan_idx on pesanan_2026_04 pesanan_danus_4  (cost=0.29..1.42 rows=2 width=8) (actual time=0.006..0.006 rows=2 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_05_id_mahasiswa_waktu_pesan_idx on pesanan_2026_05 pesanan_danus_5  (cost=0.29..1.42 rows=2 width=8) (actual time=0.006..0.006 rows=2 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_06_id_mahasiswa_waktu_pesan_idx on pesanan_2026_06 pesanan_danus_6  (cost=0.29..1.42 rows=2 width=8) (actual time=0.006..0.006 rows=4 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_07_id_mahasiswa_waktu_pesan_idx on pesanan_2026_07 pesanan_danus_7  (cost=0.29..1.42 rows=2 width=8) (actual time=0.008..0.009 rows=4 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_08_id_mahasiswa_waktu_pesan_idx on pesanan_2026_08 pesanan_danus_8  (cost=0.29..1.42 rows=2 width=8) (actual time=0.008..0.008 rows=3 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_09_id_mahasiswa_waktu_pesan_idx on pesanan_2026_09 pesanan_danus_9  (cost=0.29..1.42 rows=2 width=8) (actual time=0.006..0.006 rows=3 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_10_id_mahasiswa_waktu_pesan_idx on pesanan_2026_10 pesanan_danus_10  (cost=0.29..1.42 rows=2 width=8) (actual time=0.006..0.006 rows=2 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Index Only Scan using pesanan_2026_11_id_mahasiswa_waktu_pesan_idx on pesanan_2026_11 pesanan_danus_11  (cost=0.28..1.42 rows=2 width=8) (actual time=0.003..0.003 rows=2 loops=1)",
+          "              Index Cond: (id_mahasiswa = 500)",
+          "              Heap Fetches: 0",
+          "              Buffers: shared hit=3",
+          "        ->  Seq Scan on pesanan_2026_12 pesanan_danus_12  (cost=0.00..0.00 rows=1 width=8) (actual time=0.001..0.001 rows=0 loops=1)",
+          "              Filter: (id_mahasiswa = 500)",
+          "        ->  Seq Scan on pesanan_2027_01 pesanan_danus_13  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0 loops=1)",
+          "              Filter: (id_mahasiswa = 500)",
+          "        ->  Seq Scan on pesanan_2027_02 pesanan_danus_14  (cost=0.00..0.00 rows=1 width=8) (actual time=0.002..0.002 rows=0 loops=1)",
+          "              Filter: (id_mahasiswa = 500)",
+          "        ->  Seq Scan on pesanan_2027_03 pesanan_danus_15  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0 loops=1)",
+          "              Filter: (id_mahasiswa = 500)",
+          "        ->  Seq Scan on pesanan_default pesanan_danus_16  (cost=0.00..0.00 rows=1 width=8) (actual time=0.000..0.000 rows=0 loops=1)",
+          "              Filter: (id_mahasiswa = 500)",
+          "Planning:",
+          "  Buffers: shared hit=20",
+          "Planning Time: 0.218 ms",
+          "Execution Time: 0.142 ms"
+        ]
+      },
+      "hash": {
+        "time_ms": 0.219,
+        "scanned": [],
+        "plan": [
+          "Aggregate  (cost=362.05..362.06 rows=1 width=16) (actual time=0.176..0.177 rows=1 loops=1)",
+          "  Buffers: shared hit=154",
+          "  ->  Index Scan using pesanan_hash_p3_pkey on pesanan_hash_p3 pesanan_hash  (cost=0.29..361.95 rows=21 width=8) (actual time=0.012..0.173 rows=27 loops=1)",
+          "        Index Cond: (id_mahasiswa = 500)",
+          "        Buffers: shared hit=154",
+          "Planning Time: 0.034 ms",
+          "Execution Time: 0.185 ms"
+        ]
+      },
+      "flat": {
+        "time_ms": 2.948,
+        "plan": [
+          "Aggregate  (cost=2344.62..2344.63 rows=1 width=16) (actual time=3.247..3.249 rows=1 loops=1)",
+          "  Buffers: shared hit=1032",
+          "  ->  Seq Scan on pesanan_flat  (cost=0.00..2344.51 rows=21 width=8) (actual time=0.094..3.237 rows=27 loops=1)",
+          "        Filter: (id_mahasiswa = 500)",
+          "        Rows Removed by Filter: 104974",
+          "        Buffers: shared hit=1032",
+          "Planning Time: 0.056 ms",
+          "Execution Time: 3.271 ms"
+        ]
+      }
+    }
+  },
+  "parallel_scaling": {
+    "0": {
+      "time_ms": 136.817,
+      "speedup": 1.0,
+      "efficiency": 1.0,
+      "efficiency_percent": 100.0
+    },
+    "2": {
+      "time_ms": 94.483,
+      "speedup": 1.448,
+      "efficiency": 0.724,
+      "efficiency_percent": 72.4
+    },
+    "4": {
+      "time_ms": 92.456,
+      "speedup": 1.48,
+      "efficiency": 0.37,
+      "efficiency_percent": 37.0
+    }
+  },
+  "raw_plans": {
+    "0": [
+      "GroupAggregate  (cost=8428.71..8428.76 rows=1 width=127) (actual time=83.083..123.956 rows=7 loops=1)",
+      "  Group Key: p.metode_bayar, p.status_pesanan",
+      "  Buffers: shared hit=3069",
+      "  ->  Sort  (cost=8428.71..8428.72 rows=1 width=30) (actual time=80.830..86.058 rows=144890 loops=1)",
+      "        Sort Key: p.metode_bayar, p.status_pesanan",
+      "        Sort Method: quicksort  Memory: 13206kB",
+      "        Buffers: shared hit=3069",
+      "        ->  Hash Join  (cost=4683.13..8428.70 rows=1 width=30) (actual time=22.399..51.088 rows=144890 loops=1)",
+      "              Hash Cond: ((d.id_pesanan = p.id_pesanan) AND (d.waktu_pesan = p.waktu_pesan))",
+      "              Buffers: shared hit=3069",
+      "              ->  Seq Scan on detail_pesanan d  (cost=0.00..2984.90 rows=144890 width=31) (actual time=0.004..5.400 rows=144890 loops=1)",
+      "                    Buffers: shared hit=1536",
+      "              ->  Hash  (cost=3108.04..3108.04 rows=105006 width=31) (actual time=22.337..22.343 rows=105001 loops=1)",
+      "                    Buckets: 131072  Batches: 1  Memory Usage: 7980kB",
+      "                    Buffers: shared hit=1533",
+      "                    ->  Append  (cost=0.00..3108.04 rows=105006 width=31) (actual time=0.003..10.869 rows=105001 loops=1)",
+      "                          Buffers: shared hit=1533",
+      "                          ->  Seq Scan on pesanan_2026_01 p_1  (cost=0.00..212.67 rows=8467 width=32) (actual time=0.003..0.493 rows=8467 loops=1)",
+      "                                Buffers: shared hit=128",
+      "                          ->  Seq Scan on pesanan_2026_02 p_2  (cost=0.00..222.56 rows=9056 width=31) (actual time=0.002..0.571 rows=9056 loops=1)",
+      "                                Buffers: shared hit=132",
+      "                          ->  Seq Scan on pesanan_2026_03 p_3  (cost=0.00..228.05 rows=9305 width=31) (actual time=0.002..0.503 rows=9305 loops=1)",
+      "                                Buffers: shared hit=135",
+      "                          ->  Seq Scan on pesanan_2026_04 p_4  (cost=0.00..252.81 rows=10281 width=32) (actual time=0.001..0.548 rows=10281 loops=1)",
+      "                                Buffers: shared hit=150",
+      "                          ->  Seq Scan on pesanan_2026_05 p_5  (cost=0.00..249.78 rows=10178 width=32) (actual time=0.002..0.587 rows=10178 loops=1)",
+      "                                Buffers: shared hit=148",
+      "                          ->  Seq Scan on pesanan_2026_06 p_6  (cost=0.00..234.23 rows=9523 width=32) (actual time=0.002..1.010 rows=9523 loops=1)",
+      "                                Buffers: shared hit=139",
+      "                          ->  Seq Scan on pesanan_2026_07 p_7  (cost=0.00..259.60 rows=10560 width=31) (actual time=0.009..0.628 rows=10560 loops=1)",
+      "                                Buffers: shared hit=154",
+      "                          ->  Seq Scan on pesanan_2026_08 p_8  (cost=0.00..244.99 rows=9999 width=31) (actual time=0.004..0.531 rows=9999 loops=1)",
+      "                                Buffers: shared hit=145",
+      "                          ->  Seq Scan on pesanan_2026_09 p_9  (cost=0.00..263.34 rows=10734 width=31) (actual time=0.004..0.565 rows=10734 loops=1)",
+      "                                Buffers: shared hit=156",
+      "                          ->  Seq Scan on pesanan_2026_10 p_10  (cost=0.00..232.92 rows=9492 width=31) (actual time=0.005..0.479 rows=9492 loops=1)",
+      "                                Buffers: shared hit=138",
+      "                          ->  Seq Scan on pesanan_2026_11 p_11  (cost=0.00..182.06 rows=7406 width=32) (actual time=0.004..0.389 rows=7406 loops=1)",
+      "                                Buffers: shared hit=108",
+      "                          ->  Seq Scan on pesanan_2026_12 p_12  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)",
+      "                          ->  Seq Scan on pesanan_2027_01 p_13  (cost=0.00..0.00 rows=1 width=80) (actual time=0.001..0.001 rows=0 loops=1)",
+      "                          ->  Seq Scan on pesanan_2027_02 p_14  (cost=0.00..0.00 rows=1 width=80) (actual time=0.001..0.001 rows=0 loops=1)",
+      "                          ->  Seq Scan on pesanan_2027_03 p_15  (cost=0.00..0.00 rows=1 width=80) (actual time=0.001..0.001 rows=0 loops=1)",
+      "                          ->  Seq Scan on pesanan_default p_16  (cost=0.00..0.00 rows=1 width=80) (actual time=0.001..0.001 rows=0 loops=1)",
+      "Planning:",
+      "  Buffers: shared hit=23",
+      "Planning Time: 0.421 ms",
+      "Execution Time: 124.505 ms"
+    ],
+    "2": [
+      "GroupAggregate  (cost=6302.35..6302.40 rows=1 width=127) (actual time=46.404..88.513 rows=7 loops=1)",
+      "  Group Key: p.metode_bayar, p.status_pesanan",
+      "  Buffers: shared hit=3257",
+      "  ->  Sort  (cost=6302.35..6302.36 rows=1 width=30) (actual time=44.150..49.703 rows=144890 loops=1)",
+      "        Sort Key: p.metode_bayar, p.status_pesanan",
+      "        Sort Method: quicksort  Memory: 13206kB",
+      "        Buffers: shared hit=3257",
+      "        ->  Gather  (cost=3845.58..6302.34 rows=1 width=30) (actual time=14.493..24.699 rows=144890 loops=1)",
+      "              Workers Planned: 2",
+      "              Workers Launched: 2",
+      "              Buffers: shared hit=3257",
+      "              ->  Parallel Hash Join  (cost=2845.58..5302.24 rows=1 width=30) (actual time=11.279..21.407 rows=48297 loops=3)",
+      "                    Hash Cond: ((d.id_pesanan = p.id_pesanan) AND (d.waktu_pesan = p.waktu_pesan))",
+      "                    Buffers: shared hit=3257",
+      "                    ->  Parallel Seq Scan on detail_pesanan d  (cost=0.00..2139.71 rows=60371 width=31) (actual time=0.004..2.098 rows=48297 loops=3)",
+      "                          Buffers: shared hit=1536",
+      "                    ->  Parallel Hash  (cost=2189.26..2189.26 rows=43755 width=31) (actual time=10.777..10.781 rows=35000 loops=3)",
+      "                          Buckets: 131072  Batches: 1  Memory Usage: 8032kB",
+      "                          Buffers: shared hit=1533",
+      "                          ->  Parallel Append  (cost=0.00..2189.26 rows=43755 width=31) (actual time=0.012..3.713 rows=35000 loops=3)",
+      "                                Buffers: shared hit=1533",
+      "                                ->  Seq Scan on pesanan_2026_12 p_12  (cost=0.00..0.00 rows=1 width=80) (actual time=0.004..0.004 rows=0 loops=1)",
+      "                                ->  Seq Scan on pesanan_2027_01 p_13  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)",
+      "                                ->  Seq Scan on pesanan_2027_02 p_14  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)",
+      "                                ->  Seq Scan on pesanan_2027_03 p_15  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)",
+      "                                ->  Seq Scan on pesanan_default p_16  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)",
+      "                                ->  Parallel Seq Scan on pesanan_2026_09 p_9  (cost=0.00..200.72 rows=4472 width=31) (actual time=0.009..0.647 rows=10734 loops=1)",
+      "                                      Buffers: shared hit=156",
+      "                                ->  Parallel Seq Scan on pesanan_2026_07 p_7  (cost=0.00..198.00 rows=4400 width=31) (actual time=0.006..0.627 rows=10560 loops=1)",
+      "                                      Buffers: shared hit=154",
+      "                                ->  Parallel Seq Scan on pesanan_2026_04 p_4  (cost=0.00..192.84 rows=4284 width=32) (actual time=0.007..0.625 rows=10281 loops=1)",
+      "                                      Buffers: shared hit=150",
+      "                                ->  Parallel Seq Scan on pesanan_2026_05 p_5  (cost=0.00..190.41 rows=4241 width=32) (actual time=0.006..0.631 rows=10178 loops=1)",
+      "                                      Buffers: shared hit=148",
+      "                                ->  Parallel Seq Scan on pesanan_2026_08 p_8  (cost=0.00..186.66 rows=4166 width=31) (actual time=0.005..0.626 rows=9999 loops=1)",
+      "                                      Buffers: shared hit=145",
+      "                                ->  Parallel Seq Scan on pesanan_2026_06 p_6  (cost=0.00..178.68 rows=3968 width=32) (actual time=0.003..0.223 rows=3174 loops=3)",
+      "                                      Buffers: shared hit=139",
+      "                                ->  Parallel Seq Scan on pesanan_2026_10 p_10  (cost=0.00..177.55 rows=3955 width=31) (actual time=0.004..0.334 rows=4746 loops=2)",
+      "                                      Buffers: shared hit=138",
+      "                                ->  Parallel Seq Scan on pesanan_2026_03 p_3  (cost=0.00..173.77 rows=3877 width=31) (actual time=0.002..0.526 rows=9305 loops=1)",
+      "                                      Buffers: shared hit=135",
+      "                                ->  Parallel Seq Scan on pesanan_2026_02 p_2  (cost=0.00..169.73 rows=3773 width=31) (actual time=0.002..0.518 rows=9056 loops=1)",
+      "                                      Buffers: shared hit=132",
+      "                                ->  Parallel Seq Scan on pesanan_2026_01 p_1  (cost=0.00..163.28 rows=3528 width=32) (actual time=0.003..0.518 rows=8467 loops=1)",
+      "                                      Buffers: shared hit=128",
+      "                                ->  Parallel Seq Scan on pesanan_2026_11 p_11  (cost=0.00..138.86 rows=3086 width=32) (actual time=0.008..0.526 rows=7406 loops=1)",
+      "                                      Buffers: shared hit=108",
+      "Planning:",
+      "  Buffers: shared hit=23",
+      "Planning Time: 0.555 ms",
+      "Execution Time: 88.924 ms"
+    ],
+    "4": [
+      "GroupAggregate  (cost=5409.02..5409.08 rows=1 width=127) (actual time=44.593..92.861 rows=7 loops=1)",
+      "  Group Key: p.metode_bayar, p.status_pesanan",
+      "  Buffers: shared hit=3445",
+      "  ->  Sort  (cost=5409.02..5409.03 rows=1 width=30) (actual time=42.415..50.089 rows=144890 loops=1)",
+      "        Sort Key: p.metode_bayar, p.status_pesanan",
+      "        Sort Method: quicksort  Memory: 13206kB",
+      "        Buffers: shared hit=3445",
+      "        ->  Gather  (cost=3320.52..5409.01 rows=1 width=30) (actual time=13.788..20.718 rows=144890 loops=1)",
+      "              Workers Planned: 4",
+      "              Workers Launched: 4",
+      "              Buffers: shared hit=3445",
+      "              ->  Parallel Hash Join  (cost=2320.52..4408.91 rows=1 width=30) (actual time=8.899..16.774 rows=28978 loops=5)",
+      "                    Hash Cond: ((d.id_pesanan = p.id_pesanan) AND (d.waktu_pesan = p.waktu_pesan))",
+      "                    Buffers: shared hit=3445",
+      "                    ->  Parallel Seq Scan on detail_pesanan d  (cost=0.00..1898.22 rows=36222 width=31) (actual time=0.006..1.521 rows=28978 loops=5)",
+      "                          Buffers: shared hit=1536",
+      "                    ->  Parallel Hash  (cost=1926.76..1926.76 rows=26251 width=31) (actual time=8.418..8.423 rows=21000 loops=5)",
+      "                          Buckets: 131072  Batches: 1  Memory Usage: 8096kB",
+      "                          Buffers: shared hit=1533",
+      "                          ->  Parallel Append  (cost=0.00..1926.76 rows=26251 width=31) (actual time=0.012..2.632 rows=21000 loops=5)",
+      "                                Buffers: shared hit=1533",
+      "                                ->  Parallel Seq Scan on pesanan_2026_09 p_9  (cost=0.00..182.84 rows=2684 width=31) (actual time=0.009..0.814 rows=10734 loops=1)",
+      "                                      Buffers: shared hit=156",
+      "                                ->  Parallel Seq Scan on pesanan_2026_07 p_7  (cost=0.00..180.40 rows=2640 width=31) (actual time=0.010..0.962 rows=10560 loops=1)",
+      "                                      Buffers: shared hit=154",
+      "                                ->  Parallel Seq Scan on pesanan_2026_04 p_4  (cost=0.00..175.70 rows=2570 width=32) (actual time=0.011..0.818 rows=10281 loops=1)",
+      "                                      Buffers: shared hit=150",
+      "                                ->  Parallel Seq Scan on pesanan_2026_05 p_5  (cost=0.00..173.44 rows=2544 width=32) (actual time=0.011..0.744 rows=10178 loops=1)",
+      "                                      Buffers: shared hit=148",
+      "                                ->  Parallel Seq Scan on pesanan_2026_08 p_8  (cost=0.00..170.00 rows=2500 width=31) (actual time=0.007..0.673 rows=5000 loops=2)",
+      "                                      Buffers: shared hit=145",
+      "                                ->  Parallel Seq Scan on pesanan_2026_06 p_6  (cost=0.00..162.81 rows=2381 width=32) (actual time=0.005..0.389 rows=4762 loops=2)",
+      "                                      Buffers: shared hit=139",
+      "                                ->  Parallel Seq Scan on pesanan_2026_10 p_10  (cost=0.00..161.73 rows=2373 width=31) (actual time=0.009..0.710 rows=9492 loops=1)",
+      "                                      Buffers: shared hit=138",
+      "                                ->  Parallel Seq Scan on pesanan_2026_03 p_3  (cost=0.00..158.26 rows=2326 width=31) (actual time=0.006..0.127 rows=1861 loops=5)",
+      "                                      Buffers: shared hit=135",
+      "                                ->  Parallel Seq Scan on pesanan_2026_02 p_2  (cost=0.00..154.64 rows=2264 width=31) (actual time=0.003..0.539 rows=9056 loops=1)",
+      "                                      Buffers: shared hit=132",
+      "                                ->  Parallel Seq Scan on pesanan_2026_01 p_1  (cost=0.00..149.17 rows=2117 width=32) (actual time=0.005..0.671 rows=8467 loops=1)",
+      "                                      Buffers: shared hit=128",
+      "                                ->  Parallel Seq Scan on pesanan_2026_11 p_11  (cost=0.00..126.52 rows=1852 width=32) (actual time=0.010..0.631 rows=7406 loops=1)",
+      "                                      Buffers: shared hit=108",
+      "                                ->  Parallel Seq Scan on pesanan_2026_12 p_12  (cost=0.00..0.00 rows=1 width=80) (actual time=0.000..0.000 rows=0 loops=1)",
+      "                                ->  Parallel Seq Scan on pesanan_2027_01 p_13  (cost=0.00..0.00 rows=1 width=80) (actual time=0.000..0.000 rows=0 loops=1)",
+      "                                ->  Parallel Seq Scan on pesanan_2027_02 p_14  (cost=0.00..0.00 rows=1 width=80) (actual time=0.000..0.000 rows=0 loops=1)",
+      "                                ->  Parallel Seq Scan on pesanan_2027_03 p_15  (cost=0.00..0.00 rows=1 width=80) (actual time=0.000..0.000 rows=0 loops=1)",
+      "                                ->  Parallel Seq Scan on pesanan_default p_16  (cost=0.00..0.00 rows=1 width=80) (actual time=0.003..0.003 rows=0 loops=1)",
+      "Planning:",
+      "  Buffers: shared hit=23",
+      "Planning Time: 0.545 ms",
+      "Execution Time: 93.583 ms"
+    ]
+  }
+}

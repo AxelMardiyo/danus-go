@@ -1,0 +1,164 @@
+
+======================================================================
+EXPLAIN (ANALYZE, BUFFERS) - WORKERS = 0
+======================================================================
+GroupAggregate  (cost=8428.71..8428.76 rows=1 width=127) (actual time=83.083..123.956 rows=7 loops=1)
+  Group Key: p.metode_bayar, p.status_pesanan
+  Buffers: shared hit=3069
+  ->  Sort  (cost=8428.71..8428.72 rows=1 width=30) (actual time=80.830..86.058 rows=144890 loops=1)
+        Sort Key: p.metode_bayar, p.status_pesanan
+        Sort Method: quicksort  Memory: 13206kB
+        Buffers: shared hit=3069
+        ->  Hash Join  (cost=4683.13..8428.70 rows=1 width=30) (actual time=22.399..51.088 rows=144890 loops=1)
+              Hash Cond: ((d.id_pesanan = p.id_pesanan) AND (d.waktu_pesan = p.waktu_pesan))
+              Buffers: shared hit=3069
+              ->  Seq Scan on detail_pesanan d  (cost=0.00..2984.90 rows=144890 width=31) (actual time=0.004..5.400 rows=144890 loops=1)
+                    Buffers: shared hit=1536
+              ->  Hash  (cost=3108.04..3108.04 rows=105006 width=31) (actual time=22.337..22.343 rows=105001 loops=1)
+                    Buckets: 131072  Batches: 1  Memory Usage: 7980kB
+                    Buffers: shared hit=1533
+                    ->  Append  (cost=0.00..3108.04 rows=105006 width=31) (actual time=0.003..10.869 rows=105001 loops=1)
+                          Buffers: shared hit=1533
+                          ->  Seq Scan on pesanan_2026_01 p_1  (cost=0.00..212.67 rows=8467 width=32) (actual time=0.003..0.493 rows=8467 loops=1)
+                                Buffers: shared hit=128
+                          ->  Seq Scan on pesanan_2026_02 p_2  (cost=0.00..222.56 rows=9056 width=31) (actual time=0.002..0.571 rows=9056 loops=1)
+                                Buffers: shared hit=132
+                          ->  Seq Scan on pesanan_2026_03 p_3  (cost=0.00..228.05 rows=9305 width=31) (actual time=0.002..0.503 rows=9305 loops=1)
+                                Buffers: shared hit=135
+                          ->  Seq Scan on pesanan_2026_04 p_4  (cost=0.00..252.81 rows=10281 width=32) (actual time=0.001..0.548 rows=10281 loops=1)
+                                Buffers: shared hit=150
+                          ->  Seq Scan on pesanan_2026_05 p_5  (cost=0.00..249.78 rows=10178 width=32) (actual time=0.002..0.587 rows=10178 loops=1)
+                                Buffers: shared hit=148
+                          ->  Seq Scan on pesanan_2026_06 p_6  (cost=0.00..234.23 rows=9523 width=32) (actual time=0.002..1.010 rows=9523 loops=1)
+                                Buffers: shared hit=139
+                          ->  Seq Scan on pesanan_2026_07 p_7  (cost=0.00..259.60 rows=10560 width=31) (actual time=0.009..0.628 rows=10560 loops=1)
+                                Buffers: shared hit=154
+                          ->  Seq Scan on pesanan_2026_08 p_8  (cost=0.00..244.99 rows=9999 width=31) (actual time=0.004..0.531 rows=9999 loops=1)
+                                Buffers: shared hit=145
+                          ->  Seq Scan on pesanan_2026_09 p_9  (cost=0.00..263.34 rows=10734 width=31) (actual time=0.004..0.565 rows=10734 loops=1)
+                                Buffers: shared hit=156
+                          ->  Seq Scan on pesanan_2026_10 p_10  (cost=0.00..232.92 rows=9492 width=31) (actual time=0.005..0.479 rows=9492 loops=1)
+                                Buffers: shared hit=138
+                          ->  Seq Scan on pesanan_2026_11 p_11  (cost=0.00..182.06 rows=7406 width=32) (actual time=0.004..0.389 rows=7406 loops=1)
+                                Buffers: shared hit=108
+                          ->  Seq Scan on pesanan_2026_12 p_12  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)
+                          ->  Seq Scan on pesanan_2027_01 p_13  (cost=0.00..0.00 rows=1 width=80) (actual time=0.001..0.001 rows=0 loops=1)
+                          ->  Seq Scan on pesanan_2027_02 p_14  (cost=0.00..0.00 rows=1 width=80) (actual time=0.001..0.001 rows=0 loops=1)
+                          ->  Seq Scan on pesanan_2027_03 p_15  (cost=0.00..0.00 rows=1 width=80) (actual time=0.001..0.001 rows=0 loops=1)
+                          ->  Seq Scan on pesanan_default p_16  (cost=0.00..0.00 rows=1 width=80) (actual time=0.001..0.001 rows=0 loops=1)
+Planning:
+  Buffers: shared hit=23
+Planning Time: 0.421 ms
+Execution Time: 124.505 ms
+
+======================================================================
+EXPLAIN (ANALYZE, BUFFERS) - WORKERS = 2
+======================================================================
+GroupAggregate  (cost=6302.35..6302.40 rows=1 width=127) (actual time=46.404..88.513 rows=7 loops=1)
+  Group Key: p.metode_bayar, p.status_pesanan
+  Buffers: shared hit=3257
+  ->  Sort  (cost=6302.35..6302.36 rows=1 width=30) (actual time=44.150..49.703 rows=144890 loops=1)
+        Sort Key: p.metode_bayar, p.status_pesanan
+        Sort Method: quicksort  Memory: 13206kB
+        Buffers: shared hit=3257
+        ->  Gather  (cost=3845.58..6302.34 rows=1 width=30) (actual time=14.493..24.699 rows=144890 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=3257
+              ->  Parallel Hash Join  (cost=2845.58..5302.24 rows=1 width=30) (actual time=11.279..21.407 rows=48297 loops=3)
+                    Hash Cond: ((d.id_pesanan = p.id_pesanan) AND (d.waktu_pesan = p.waktu_pesan))
+                    Buffers: shared hit=3257
+                    ->  Parallel Seq Scan on detail_pesanan d  (cost=0.00..2139.71 rows=60371 width=31) (actual time=0.004..2.098 rows=48297 loops=3)
+                          Buffers: shared hit=1536
+                    ->  Parallel Hash  (cost=2189.26..2189.26 rows=43755 width=31) (actual time=10.777..10.781 rows=35000 loops=3)
+                          Buckets: 131072  Batches: 1  Memory Usage: 8032kB
+                          Buffers: shared hit=1533
+                          ->  Parallel Append  (cost=0.00..2189.26 rows=43755 width=31) (actual time=0.012..3.713 rows=35000 loops=3)
+                                Buffers: shared hit=1533
+                                ->  Seq Scan on pesanan_2026_12 p_12  (cost=0.00..0.00 rows=1 width=80) (actual time=0.004..0.004 rows=0 loops=1)
+                                ->  Seq Scan on pesanan_2027_01 p_13  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)
+                                ->  Seq Scan on pesanan_2027_02 p_14  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)
+                                ->  Seq Scan on pesanan_2027_03 p_15  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)
+                                ->  Seq Scan on pesanan_default p_16  (cost=0.00..0.00 rows=1 width=80) (actual time=0.002..0.002 rows=0 loops=1)
+                                ->  Parallel Seq Scan on pesanan_2026_09 p_9  (cost=0.00..200.72 rows=4472 width=31) (actual time=0.009..0.647 rows=10734 loops=1)
+                                      Buffers: shared hit=156
+                                ->  Parallel Seq Scan on pesanan_2026_07 p_7  (cost=0.00..198.00 rows=4400 width=31) (actual time=0.006..0.627 rows=10560 loops=1)
+                                      Buffers: shared hit=154
+                                ->  Parallel Seq Scan on pesanan_2026_04 p_4  (cost=0.00..192.84 rows=4284 width=32) (actual time=0.007..0.625 rows=10281 loops=1)
+                                      Buffers: shared hit=150
+                                ->  Parallel Seq Scan on pesanan_2026_05 p_5  (cost=0.00..190.41 rows=4241 width=32) (actual time=0.006..0.631 rows=10178 loops=1)
+                                      Buffers: shared hit=148
+                                ->  Parallel Seq Scan on pesanan_2026_08 p_8  (cost=0.00..186.66 rows=4166 width=31) (actual time=0.005..0.626 rows=9999 loops=1)
+                                      Buffers: shared hit=145
+                                ->  Parallel Seq Scan on pesanan_2026_06 p_6  (cost=0.00..178.68 rows=3968 width=32) (actual time=0.003..0.223 rows=3174 loops=3)
+                                      Buffers: shared hit=139
+                                ->  Parallel Seq Scan on pesanan_2026_10 p_10  (cost=0.00..177.55 rows=3955 width=31) (actual time=0.004..0.334 rows=4746 loops=2)
+                                      Buffers: shared hit=138
+                                ->  Parallel Seq Scan on pesanan_2026_03 p_3  (cost=0.00..173.77 rows=3877 width=31) (actual time=0.002..0.526 rows=9305 loops=1)
+                                      Buffers: shared hit=135
+                                ->  Parallel Seq Scan on pesanan_2026_02 p_2  (cost=0.00..169.73 rows=3773 width=31) (actual time=0.002..0.518 rows=9056 loops=1)
+                                      Buffers: shared hit=132
+                                ->  Parallel Seq Scan on pesanan_2026_01 p_1  (cost=0.00..163.28 rows=3528 width=32) (actual time=0.003..0.518 rows=8467 loops=1)
+                                      Buffers: shared hit=128
+                                ->  Parallel Seq Scan on pesanan_2026_11 p_11  (cost=0.00..138.86 rows=3086 width=32) (actual time=0.008..0.526 rows=7406 loops=1)
+                                      Buffers: shared hit=108
+Planning:
+  Buffers: shared hit=23
+Planning Time: 0.555 ms
+Execution Time: 88.924 ms
+
+======================================================================
+EXPLAIN (ANALYZE, BUFFERS) - WORKERS = 4
+======================================================================
+GroupAggregate  (cost=5409.02..5409.08 rows=1 width=127) (actual time=44.593..92.861 rows=7 loops=1)
+  Group Key: p.metode_bayar, p.status_pesanan
+  Buffers: shared hit=3445
+  ->  Sort  (cost=5409.02..5409.03 rows=1 width=30) (actual time=42.415..50.089 rows=144890 loops=1)
+        Sort Key: p.metode_bayar, p.status_pesanan
+        Sort Method: quicksort  Memory: 13206kB
+        Buffers: shared hit=3445
+        ->  Gather  (cost=3320.52..5409.01 rows=1 width=30) (actual time=13.788..20.718 rows=144890 loops=1)
+              Workers Planned: 4
+              Workers Launched: 4
+              Buffers: shared hit=3445
+              ->  Parallel Hash Join  (cost=2320.52..4408.91 rows=1 width=30) (actual time=8.899..16.774 rows=28978 loops=5)
+                    Hash Cond: ((d.id_pesanan = p.id_pesanan) AND (d.waktu_pesan = p.waktu_pesan))
+                    Buffers: shared hit=3445
+                    ->  Parallel Seq Scan on detail_pesanan d  (cost=0.00..1898.22 rows=36222 width=31) (actual time=0.006..1.521 rows=28978 loops=5)
+                          Buffers: shared hit=1536
+                    ->  Parallel Hash  (cost=1926.76..1926.76 rows=26251 width=31) (actual time=8.418..8.423 rows=21000 loops=5)
+                          Buckets: 131072  Batches: 1  Memory Usage: 8096kB
+                          Buffers: shared hit=1533
+                          ->  Parallel Append  (cost=0.00..1926.76 rows=26251 width=31) (actual time=0.012..2.632 rows=21000 loops=5)
+                                Buffers: shared hit=1533
+                                ->  Parallel Seq Scan on pesanan_2026_09 p_9  (cost=0.00..182.84 rows=2684 width=31) (actual time=0.009..0.814 rows=10734 loops=1)
+                                      Buffers: shared hit=156
+                                ->  Parallel Seq Scan on pesanan_2026_07 p_7  (cost=0.00..180.40 rows=2640 width=31) (actual time=0.010..0.962 rows=10560 loops=1)
+                                      Buffers: shared hit=154
+                                ->  Parallel Seq Scan on pesanan_2026_04 p_4  (cost=0.00..175.70 rows=2570 width=32) (actual time=0.011..0.818 rows=10281 loops=1)
+                                      Buffers: shared hit=150
+                                ->  Parallel Seq Scan on pesanan_2026_05 p_5  (cost=0.00..173.44 rows=2544 width=32) (actual time=0.011..0.744 rows=10178 loops=1)
+                                      Buffers: shared hit=148
+                                ->  Parallel Seq Scan on pesanan_2026_08 p_8  (cost=0.00..170.00 rows=2500 width=31) (actual time=0.007..0.673 rows=5000 loops=2)
+                                      Buffers: shared hit=145
+                                ->  Parallel Seq Scan on pesanan_2026_06 p_6  (cost=0.00..162.81 rows=2381 width=32) (actual time=0.005..0.389 rows=4762 loops=2)
+                                      Buffers: shared hit=139
+                                ->  Parallel Seq Scan on pesanan_2026_10 p_10  (cost=0.00..161.73 rows=2373 width=31) (actual time=0.009..0.710 rows=9492 loops=1)
+                                      Buffers: shared hit=138
+                                ->  Parallel Seq Scan on pesanan_2026_03 p_3  (cost=0.00..158.26 rows=2326 width=31) (actual time=0.006..0.127 rows=1861 loops=5)
+                                      Buffers: shared hit=135
+                                ->  Parallel Seq Scan on pesanan_2026_02 p_2  (cost=0.00..154.64 rows=2264 width=31) (actual time=0.003..0.539 rows=9056 loops=1)
+                                      Buffers: shared hit=132
+                                ->  Parallel Seq Scan on pesanan_2026_01 p_1  (cost=0.00..149.17 rows=2117 width=32) (actual time=0.005..0.671 rows=8467 loops=1)
+                                      Buffers: shared hit=128
+                                ->  Parallel Seq Scan on pesanan_2026_11 p_11  (cost=0.00..126.52 rows=1852 width=32) (actual time=0.010..0.631 rows=7406 loops=1)
+                                      Buffers: shared hit=108
+                                ->  Parallel Seq Scan on pesanan_2026_12 p_12  (cost=0.00..0.00 rows=1 width=80) (actual time=0.000..0.000 rows=0 loops=1)
+                                ->  Parallel Seq Scan on pesanan_2027_01 p_13  (cost=0.00..0.00 rows=1 width=80) (actual time=0.000..0.000 rows=0 loops=1)
+                                ->  Parallel Seq Scan on pesanan_2027_02 p_14  (cost=0.00..0.00 rows=1 width=80) (actual time=0.000..0.000 rows=0 loops=1)
+                                ->  Parallel Seq Scan on pesanan_2027_03 p_15  (cost=0.00..0.00 rows=1 width=80) (actual time=0.000..0.000 rows=0 loops=1)
+                                ->  Parallel Seq Scan on pesanan_default p_16  (cost=0.00..0.00 rows=1 width=80) (actual time=0.003..0.003 rows=0 loops=1)
+Planning:
+  Buffers: shared hit=23
+Planning Time: 0.545 ms
+Execution Time: 93.583 ms
